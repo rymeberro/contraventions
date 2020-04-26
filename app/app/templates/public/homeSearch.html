@@ -1,0 +1,80 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      {% if username %}
+      <div class="card">
+        <div class="card-body">
+        <p>Vous êtes connecté en tant que <span style="color:blue"> {{ username }} </span>.</p>
+        <p><a href="/myAccount">Détails du compte</a></p>
+        <p><a href="/logout">Se déconnecter</a></p>
+      </div>
+    </div>
+    <hr>
+      {% endif %}
+
+      <div class="card">
+        <div class="card-body">
+          <form action="/search" method="POST">
+            <h3 name="test">Recherche par nom d’établissement, propriétaire ou rue </h3>
+            <div class="active-cyan-3 active-cyan-4 mb-4">
+              <input class="form-control" name ='searchText' type="text" placeholder="Search..." aria-label="Search">
+           <p name= 'msg-erreur1' style="color: red; display: none;"> veuillez saisir l'expression de recherche</p>
+           </div>
+          </form>
+        </div>
+      </div>
+
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <form action="/dateSearch" method="POST" id="date-form">
+            <h3>Recherche par interval de dates</h3>
+            <div class="active-cyan-3 active-cyan-4 mb-4">
+                  <div>
+                    <label for="date-debut">Start Date: </label>
+                    <input type="date" id="start" name="date-debut">
+                  </div>
+                  <div>
+                    <label for="date-fin">End Date: </label>
+                    <input type="date" id="end" name="date-fin">
+                  </div>
+                </div>
+                  <button class="btn btn-primary" type="submit" id='date-submit-button'> Submit </button>
+                </div>
+                 <!-- <p name= 'msg-erreur2' style="color: red; display: none;"> veuillez saisir 2 dates</p>-->
+                </div>
+          </form>
+          <div id="form-response"></div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <form action="/etablissementSearch" method="POST" id="etablissement-form">
+            <h3>Recherche par établissement</h3>
+            <div>
+            <select id="etablissement" name="etablissement" onchange="onEtablissementChange();">
+              <option value="">Aucun</option>
+              {% for un_etablissement in etablissements %}
+                <option value="{{ un_etablissement[0] }}">{{ un_etablissement[0]  }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <p> </p>
+          <div>
+            <button class="btn btn-primary" type="submit" id='etab-submit-button'> Submit </button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

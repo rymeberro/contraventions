@@ -1,0 +1,28 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <h1>Accèder à votre compte</h1>
+      {% if error %}
+        <p style="color:#F00">Saisir les 2 champs</p>
+      {% endif %}
+      <hr>
+      <form action="/login" method="POST">
+        <label>Courriel </label>
+        <input type="email" class="form-control" id="1" name="email" placeholder="courriel" >
+        <br>
+        <label>Mot de passe</label>
+        <input type="password" class="form-control" id="2" name="password" placeholder="password">
+       <br>
+      <input type="submit" class="btn btn-primary" value="Se connecter">
+    </form>
+    </div>
+  </div>
+</div>{% endblock %}
+ 

@@ -1,0 +1,47 @@
+#%RAML 1.0
+title: REST API services pour les contraventions
+baseUri: http://127.0.0.1:5000/
+version: 1 
+
+/api:
+  /contravenants:
+    get:
+      description: La liste des contraventions a été correctement envoyée.
+      responses:
+        200:
+          body:
+            application/json:
+              type: Contravention
+        500:
+          description: Une erreur interne s'est produite. L'erreur a été signalée à l'équipe de développement.
+   
+        queryParameters:
+          du:
+            description: date en format ISO8601 presentant le debut de l'intervalle de recherche par date
+            type: date
+            required: true
+            example: 2017-07-01
+          au:
+            description: date en format ISO8601 presentant la fin de l'intervalle de recherche par date
+            type: date
+            required: true
+            example: 2017-07-10
+
+   /etablissement:
+    get:
+      description: La liste des etablissement a été correctement envoyée.
+      responses:
+        200:
+          body:
+            application/json:
+              type: Contravention
+        500:
+          description: Une erreur interne s'est produite. L'erreur a été signalée à l'équipe de développement.
+   
+        queryParameters:
+          nom:
+            description: text representant le nom du restaurant en question
+            type: string
+            required: true
+            example: ANTIGUA
+    

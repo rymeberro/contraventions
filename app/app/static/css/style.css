@@ -1,0 +1,18 @@
+body {
+  background-color: #DCDCDC;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+ input[type=text] #paragraph {
+ 	height:10em;
+ }
+
+ .fieldName {
+ 	color: blue;
+ 	font-style: bold;
+ }
+
+ 

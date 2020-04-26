@@ -1,0 +1,38 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% if contraventions %}
+      <h2>Contraventions obtenu par l'établissement : <span style="color:green">{{etablissement}}</span></h2>
+        {% for contravention in contraventions %}
+          <div class="card">
+            <div class="card-body">
+              <h3> Constat de contravention </h3>
+              <hr>
+              <p> <span class="fieldName" style="color:gray"> Proprietaire : </span>{{ contravention['proprietaire'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Établissement : </span>{{ contravention['etablissement'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Categorie : </span>{{ contravention['categorie'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Adresse : </span>{{ contravention['adresse'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Ville : </span>{{ contravention['ville'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Date_infraction : </span>{{ contravention['date_infraction'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Date_jugement : </span>{{ contravention['date_jugement'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Montant : </span>{{ contravention['montant'] }} </p>
+              <p> <span class="fieldName" style="color:gray"> Description : </span>{{ contravention['description'] }} </p>
+            </div>
+          </div>
+          <hr>
+        {% endfor %} 
+        {% else %}
+       <p> Aucun établissement selectionné, retournez à la <a href="{{ url_for('home') }}">page d'acceuil </a> </p>
+        {% endif %}
+	 </div>
+  </div>
+</div>
+
+{% endblock %}
+ 

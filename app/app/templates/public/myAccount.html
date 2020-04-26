@@ -1,0 +1,46 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <h1>Détails du compte</h1>
+      {% if error %}
+        <p style="color:#F00">Tous les champs sont obligatoires. Veuillez recommencer.</p>
+      {% endif %}
+      <hr>
+      <p>Nom: <span style="color:gray">{{ utilisateur[0] }} </span></p>
+      <p>Courriel:  <span style="color:blue"> {{ username }} </span></p>
+      <form action="/modifyAccount" method="POST">
+        <div class="form-group">
+          <div class="form-group">
+            <label>Photo Utilisateur</label>  
+            <span><input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"></span>
+          </div> 
+          <div>
+            <label>Liste d'établissements à surveiller: </label>
+            <div>
+              <p name="etablissements-choisies"></p>
+            </div>
+          </div>
+          <div>
+            <select id="etablissement" name="etablissement-dropdown">
+              <option value="">Aucun</option>
+              {% for un_etablissement in etablissements %}
+                <option name="etablissement-name" value="{{ un_etablissement[0] }}">{{ un_etablissement[0] }}</option>
+              {% endfor %}
+            </select>
+          <button id= "addResto">Ajouter</button>
+          </div>
+        </div> 
+        <span><button type="submit" class="btn btn-primary">Sauvegarder</button></span>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+ 

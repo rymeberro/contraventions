@@ -1,0 +1,39 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% if date_debut and date_fin %}
+        <h2>Resultats de recheche pour les établissements ayant obtenu des contraventions durant la période : <span style="color:green">{{date_debut}}</span> --> <span style="color:green">{{date_fin}}</span></h2>
+        <hr>
+        <p name='test'></p>
+        {% if contraventions %}
+          <table style="width:100%">
+                    <tr>
+                      <th>Etablissement</th>
+                      <th style="text-align:center">Nombre de contraventions</th>
+                    </tr>
+                    {% for contravention in contraventions %}            
+                    <tr style="border: solid ; border-width: 1px 0">
+                      <td name ='etablissement-name'>{{ contravention['etablissement'] }}</td>
+                      <td name ='nbr-contraventions' style="text-align:center">{{ contravention['nbrContraventions'] }}</td>
+                    </tr>
+                     {% endfor %} 
+                  </table>
+        {% else %}
+          <p> Pas de contraventions durant cette periode </p>
+        {% endif %}
+      {% else %}
+       <p> recherche vide, retournez à la <a href="{{ url_for('home') }}">page d'acceuil </a> </p>
+      {% endif %}
+       
+	 </div>
+  </div>
+</div>
+
+{% endblock %}
+ 
